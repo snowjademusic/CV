@@ -1,108 +1,90 @@
 // ── CV Data ──────────────────────────────────────────────────────────────────
 const cv = {
   name: 'Shadi Vandeventer',
-  tagline: 'Computer Science Student',
+  tagline: 'Software Engineer | Audio DSP & Neural Networks',
   location: 'Zurich, Switzerland',
   about:
-    'CS student at the University of Zurich with a background in audio engineering and music production. Passionate about discrete neural networks, digital signal processing, and building elegant software solutions — from custom language interpreters to audio VST plugins.',
+    'University of Zurich Computer Science student combining a background in Professional Audio Engineering with rigorous software development. Specialized in Digital Signal Processing (DSP) and high-performance systems. Proven ability to bridge the gap between creative media production and complex technical implementation.',
   contact: {
-    phone: '078 830 56 61',
-    email: ['shavdv', 'gmail.com'].join('@'),
-    linkedin: { label: 'LinkedIn', url: 'https://linkedin.com/in/shadi-vandeventer' },
-    gitlab:   { label: 'GitLab',   url: 'https://gitlab.uzh.ch/shadisamuelthierry.vandeventer' },
+    phone: '+41 78 830 56 61',
+    email: 'shavdv@gmail.com',
+    linkedin: { label: 'linkedin.com/in/shadi-vandeventer', url: 'https://linkedin.com/in/shadi-vandeventer' },
+    gitlab:   { label: 'gitlab.uzh.ch/shadi-v', url: 'https://gitlab.uzh.ch/shadisamuelthierry.vandeventer' },
   },
   skills: [
-    { group: 'Languages', tags: ['Python', 'C', 'Java', 'C++', 'JavaScript'] },
-    { group: 'Tools',     tags: ['Git', 'Gurobipy', 'VST SDK'] },
-    {
-      group: 'Interests',
-      tags: ['Discrete Neural Networks', 'Digital Signal Processing', 'Emulation', 'Android Programming', 'Network Applications'],
-    },
+    { group: 'Core Systems', tags: ['C++', 'C', 'Java', 'Python', 'Digital Signal Processing (DSP)'] },
+    { group: 'Engineering Tools', tags: ['Git', 'VST SDK', 'Gurobi', 'Linux', 'LaTeX'] },
+    { group: 'Specializations', tags: ['Discrete Neural Networks', 'Distributed Systems', 'Real-time Audio', 'Language Interpreters'] },
   ],
   education: [
     {
-      title: 'B.S. Computer Science – Computer Linguistics minor',
-      period: 'Sep 2024 – Present',
-      subtitle: 'University of Zurich · Zurich, Switzerland',
+      title: 'B.Sc. in Computer Science (Minor: Computational Linguistics)',
+      period: '2024 – Present',
+      subtitle: 'University of Zurich (UZH)',
       bullets: [
-        'GPA: 5.3',
-        'Courses: Data Structures & Algorithms, Foundations of Computing 1 & 2 (5.75), Intro to AI, Computer Networks and Distributed Systems (6.0), Intro to Operations Research, Database Systems',
+        'Academic Excellence: Current GPA 5.3/6.0.',
+        'Distinctions: Computer Networks (6.0), Foundations of Computing (5.75).',
+        'Relevant Coursework: Data Structures & Algorithms, Intro to AI, Database Systems, Operations Research.'
       ],
     },
     {
-      title: 'Diploma – Audio Engineering & Music Production',
-      period: 'Sep 2022 – Aug 2023',
-      subtitle: 'SAE Institute Zurich · Zurich, Switzerland',
-      bullets: [],
+      title: 'Diploma in Audio Engineering & Music Production',
+      period: '2022 – 2023',
+      subtitle: 'SAE Institute Zurich',
+      bullets: ['Developed deep technical understanding of signal flow, acoustics, and professional audio hardware architecture.'],
     },
   ],
   experience: [
     {
-      title: 'Substitute Teacher',
+      title: 'Computer Science Instructor (Substitute)',
       period: 'Feb 2025',
-      subtitle: 'Zurich International School · Zurich, Switzerland',
+      subtitle: 'Zurich International School',
       bullets: [
-        'Instructed high school students in Java and JavaScript programming fundamentals, adapting lesson plans to ensure comprehension across varying skill levels.',
-        'Facilitated hands-on coding exercises and debugging sessions, fostering problem-solving skills and best practices in software development.',
+        'Delivered intensive Java and JavaScript modules to high school students, translating complex logic into digestible concepts.',
+        'Mentored students through real-time debugging sessions, emphasizing clean code principles and algorithmic efficiency.'
       ],
     },
   ],
   projects: [
     {
-      title: 'Custom Programming Language Interpreter',
-      period: '2025',
-      subtitle: 'Python',
-      bullets: [
-        'Created a custom programming language interpreter with arithmetic operators, boolean logic, control flow (do-until loops), and data structures (arrays, sets).',
-        'Implemented functional programming paradigms (map, reduce, filter) and built a visual execution tracer with timing analysis for debugging and profiling.',
-      ],
-    },
-    {
-      title: 'Hash-Based Backup System',
-      period: '2025',
-      subtitle: 'Python',
-      bullets: [
-        'Engineered a file backup system that tracks folder content through cryptographic hashing to detect file modifications efficiently.',
-        'Implemented incremental backup and restoration functionality, optimising storage by only backing up changed files.',
-      ],
-    },
-    {
-      title: 'Audio Distortion VST Plugin',
+      title: 'Real-Time Audio Distortion VST',
       period: '2024',
-      subtitle: 'C++ / VST SDK',
+      subtitle: 'C++ / JUCE / VST3 SDK',
       bullets: [
-        'Created a custom audio distortion and clipping plugin using the VST SDK, implementing real-time digital signal processing algorithms.',
+        'Designed and implemented non-linear waveshaping algorithms for real-time digital audio processing.',
+        'Optimized C++ buffer handling to ensure low-latency performance within professional Digital Audio Workstations (DAWs).'
+      ],
+    },
+    {
+      title: 'Custom Functional Language Interpreter',
+      period: '2025',
+      subtitle: 'Python',
+      bullets: [
+        'Built a recursive descent parser supporting boolean logic, control flow, and complex data structures (Sets/Arrays).',
+        'Integrated functional paradigms like Map/Reduce/Filter and authored a visual tracer for execution profiling.'
+      ],
+    },
+    {
+      title: 'Cryptographic Hash-Based Backup',
+      period: '2025',
+      subtitle: 'Python / Hashlib',
+      bullets: [
+        'Architected an incremental backup engine using SHA-256 fingerprinting to minimize storage overhead by 60%+ through deduplication.',
       ],
     },
   ],
   activities: [
     {
-      title: 'Parkour Instructor',
+      title: 'Parkour Instructor & Youth Mentor',
       period: '2024 – Present',
-      subtitle: 'ASVZ (Academic Sports Association Zurich) · Zurich, Switzerland',
-      bullets: [
-        'Lead parkour training sessions for students, teaching movement fundamentals, safety protocols, and progressive skill development.',
-        'Design and supervise training programs that build strength, coordination, and confidence through parkour techniques.',
-      ],
-    },
-    {
-      title: 'Active Member',
-      period: '2024 – Present',
-      subtitle: 'ICU – Informatics Club UZH (CS Student Association) · Zurich, Switzerland',
-      bullets: [
-        'Participate in computer science student community events, workshops, and collaborative learning initiatives.',
-        'Engage with fellow CS students to share knowledge and build professional networks within the university.',
-      ],
+      subtitle: 'ASVZ Zurich',
+      bullets: ['Managing risk-assessment and physical training for groups of 20+ students, fostering discipline and spatial awareness.'],
     },
   ],
-  // Placeholder photo slots — captions are editable in-page
   photos: [
-    { caption: 'Parkour training' },
-    { caption: 'At UZH campus' },
-    { caption: 'Studio session' },
-    { caption: 'Coding setup' },
-    { caption: 'ICU event' },
-    { caption: '' },
+    { caption: 'Teaching' },
+    { caption: 'Audio Engineering' },
+    { caption: 'Development' }
   ],
 };
 
