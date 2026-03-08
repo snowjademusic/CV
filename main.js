@@ -82,11 +82,6 @@ const cv = {
       bullets: ['Managing risk-assessment and physical training for groups of 20+ students, fostering discipline and spatial awareness.'],
     },
   ],
-  photos: [
-    { caption: 'Teaching' },
-    { caption: 'Audio Engineering' },
-    { caption: 'Development' }
-  ],
 };
 
 // ── DOM Helpers ───────────────────────────────────────────────────────────────
@@ -158,78 +153,6 @@ function renderEntries(container, list) {
   });
 }
 
-// ── Photos Section ────────────────────────────────────────────────────────────
-function renderPhotos() {
-  const section = el('section', { id: 'photos', className: 'reveal' });
-  const c = card([
-    sectionTitle('Photos'),
-    el('p', { className: 'photos-hint' }, 'Click any slot to upload a photo — images are stored locally in your browser.'),
-  ]);
-
-  const grid = el('div', { className: 'photos-grid' });
-
-  cv.photos.forEach((photo, idx) => {
-    const slot = el('div', { className: 'photo-slot', 'data-idx': idx });
-
-    // Hidden file input
-    const input = el('input', { type: 'file', accept: 'image/*', title: 'Upload photo' });
-
-    // Placeholder icon + label (visible when empty)
-    const icon  = el('span', { className: 'upload-icon' }, '＋');
-    const label = el('span', null, 'Add photo');
-
-    // Overlay (visible on hover when image exists)
-    const overlay = el('div', { className: 'photo-overlay' });
-    const overlayLabel = el('span', { className: 'photo-overlay-label' }, '');
-    overlay.appendChild(overlayLabel);
-
-    // Caption input
-    const caption = el('input', { className: 'photo-caption-input', type: 'text', placeholder: 'Add a caption…', value: photo.caption || '' });
-    caption.addEventListener('click', e => e.stopPropagation());
-
-    slot.appendChild(input);
-    slot.appendChild(icon);
-    slot.appendChild(label);
-    slot.appendChild(overlay);
-    slot.appendChild(caption);
-
-    // Load from localStorage if available
-    const stored = (() => { try { return localStorage.getItem(`cv_photo_${idx}`); } catch { return null; } })();
-    if (stored) applyImage(slot, stored, icon, label, overlayLabel, caption);
-
-    input.addEventListener('change', () => {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        const dataURL = e.target.result;
-        try { localStorage.setItem(`cv_photo_${idx}`, dataURL); } catch {}
-        applyImage(slot, dataURL, icon, label, overlayLabel, caption);
-      };
-      reader.readAsDataURL(file);
-    });
-
-    grid.appendChild(slot);
-  });
-
-  c.appendChild(grid);
-  section.appendChild(c);
-  return section;
-}
-
-function applyImage(slot, src, icon, label, overlayLabel, caption) {
-  // Remove any existing img
-  const existing = slot.querySelector('img');
-  if (existing) existing.remove();
-
-  const img = el('img', { src, alt: caption.value || 'Photo' });
-  slot.insertBefore(img, slot.firstChild);
-  slot.classList.add('has-image');
-  icon.style.display  = 'none';
-  label.style.display = 'none';
-  overlayLabel.textContent = caption.value || 'Click to replace';
-}
-
 // ── Main Render ───────────────────────────────────────────────────────────────
 function render() {
   const app = document.getElementById('app');
@@ -266,7 +189,6 @@ function render() {
     ['#projects',   'Projects',   ''],
     ['#education',  'Education',  ''],
     ['#activities', 'Activities', ''],
-    ['#photos',     'Photos',     ''],
     ['#contact',    'Contact',    'btn-primary'],
   ];
   navLinks.forEach(([href, lbl, cls]) => {
@@ -322,9 +244,6 @@ function render() {
   renderEntries(actCard, cv.activities);
   actSec.appendChild(actCard);
   app.appendChild(actSec);
-
-  // ── Photos ──
-  app.appendChild(renderPhotos());
 
   // ── Contact ──
   const contactSec = el('section', { id: 'contact', className: 'reveal' });
