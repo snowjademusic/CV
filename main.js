@@ -245,11 +245,12 @@ function render() {
   src: 'assets/ShadiVandeventer.jpg',  // Path to your image
   alt: 'Shadi Vandeventer'
 });
-heroCard.appendChild(profileImg);
-
-heroCard.appendChild(el('h1', null, cv.name));
-
-  heroCard.appendChild(el('h1', null, cv.name));
+// Wrap image + name in a flex row
+  const heroTop = el('div', { className: 'hero-top' });
+  heroTop.appendChild(profileImg);
+  heroTop.appendChild(el('h1', null, cv.name));
+  heroCard.appendChild(heroTop);
+  
   const taglineEl = el('p', { className: 'tagline' },
     cv.tagline,
     el('span', null, ' · '),

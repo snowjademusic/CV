@@ -376,3 +376,39 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ── Custom Additions for Photos ─────────────────────────────────── */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.profile-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;  /* Makes it circular */
+  object-fit: cover;
+  border: 3px solid var(--accent);
+}
+
+.entry {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.entry-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;  /* Rounded corners */
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
