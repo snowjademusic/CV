@@ -8,8 +8,8 @@ const cv = {
   contact: {
     phone: '+41 78 830 56 61',
     email: 'shavdv@gmail.com',
-    linkedin: { label: 'linkedin.com/in/shadi-vandeventer', url: 'https://linkedin.com/in/shadi-vandeventer' },
-    gitlab:   { label: 'gitlab.uzh.ch/shadi-v', url: 'https://gitlab.uzh.ch/shadisamuelthierry.vandeventer' },
+    linkedin: { label: 'LinkedIn', url: 'https://www.linkedin.com/in/shadi-vandeventer-45705427a/' },
+    gitlab:   { label: 'GitLab', url: 'https://gitlab.uzh.ch/shadisamuelthierry.vandeventer' },
   },
   skills: [
     { group: 'Core Systems', tags: ['C++', 'C', 'Java', 'Python', 'Digital Signal Processing (DSP)'] },
@@ -78,6 +78,7 @@ const cv = {
       title: 'Parkour Instructor & Youth Mentor',
       period: '2024 – Present',
       subtitle: 'ASVZ Zurich',
+      image: 'assets/Parkour.jpg',
       bullets: ['Managing risk-assessment and physical training for groups of 20+ students, fostering discipline and spatial awareness.'],
     },
   ],
@@ -128,6 +129,17 @@ function renderBullets(bullets) {
 
 function renderEntry(entry) {
   const wrap = el('div', { className: 'entry' });
+
+  // Add image if provided
+  if (entry.image) {
+    const img = el('img', { 
+      className: 'entry-img', 
+      src: entry.image, 
+      alt: entry.title 
+    });
+    wrap.appendChild(img);
+  }
+  
   const header = el('div', { className: 'entry-header' },
     el('span', { className: 'entry-title' }, entry.title),
     el('span', { className: 'entry-period' }, entry.period),
@@ -222,9 +234,21 @@ function applyImage(slot, src, icon, label, overlayLabel, caption) {
 function render() {
   const app = document.getElementById('app');
 
+
+
   // ── Hero ──
   const heroSec = el('section', { id: 'top', className: 'reveal' });
   const heroCard = el('div', { className: 'card hero' });
+
+  const profileImg = el('img', { 
+  className: 'profile-img', 
+  src: 'assets/ShadiVandeventer.jpg',  // Path to your image
+  alt: 'Shadi Vandeventer'
+});
+heroCard.appendChild(profileImg);
+
+heroCard.appendChild(el('h1', null, cv.name));
+
   heroCard.appendChild(el('h1', null, cv.name));
   const taglineEl = el('p', { className: 'tagline' },
     cv.tagline,
