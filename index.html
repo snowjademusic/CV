@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name – CV</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-start:      #0a000f;
+      --bg-mid:        #1a0030;
+      --bg-end:        #0d0018;
+      --accent:        #b44fff;
+      --accent-dim:    #7b2fbe;
+      --text-primary:  #f0e6ff;
+      --text-secondary:#c4a8e8;
+      --glass-bg:      rgba(100, 20, 160, 0.12);
+      --glass-border:  rgba(180, 79, 255, 0.25);
+      --btn-bg:        rgba(140, 40, 200, 0.18);
+      --btn-hover:     rgba(180, 79, 255, 0.32);
+      --btn-border:    rgba(180, 79, 255, 0.55);
+      --shadow:        0 4px 32px rgba(100, 0, 180, 0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+      color: var(--text-primary);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+    }
+
+    /* ── Subtle animated background orbs ── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(130, 0, 255, 0.18) 0%, transparent 70%);
+      top: -120px; left: -120px;
+    }
+    body::after {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(180, 79, 255, 0.14) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── Glass card ── */
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    /* ── Header / Hero ── */
+    .hero {
+      text-align: center;
+      padding: 3rem 2.5rem 2.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: linear-gradient(90deg, #d88fff, #b44fff, #7b2fbe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── Nav buttons (translucent) ── */
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.25s, border-color 0.25s, transform 0.15s, box-shadow 0.25s;
+    }
+    .btn:hover, .btn:focus-visible {
+      background: var(--btn-hover);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(180, 79, 255, 0.45);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .btn-primary {
+      background: rgba(140, 40, 200, 0.35);
+      border-color: var(--accent);
+    }
+
+    /* ── Section headings ── */
+    section { scroll-margin-top: 1.5rem; }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    /* ── About ── */
+    .about-text { color: var(--text-secondary); }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-tag {
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* ── Experience & Education ── */
+    .entry { margin-bottom: 1.5rem; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.3rem;
+    }
+    .entry-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+    .entry-period {
+      font-size: 0.85rem;
+      color: var(--accent-dim);
+    }
+    .entry-subtitle {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .entry-desc { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* ── Contact ── */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* ── Divider ── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--glass-border);
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .card { padding: 1.4rem 1.2rem; }
+      .hero  { padding: 2rem 1.2rem 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ── Hero / Header ── -->
+    <section id="top">
+      <div class="card hero">
+        <h1>Your Name</h1>
+        <p class="tagline">Your Title &nbsp;·&nbsp; Your Location</p>
+
+        <nav class="nav-buttons" aria-label="Page sections">
+          <a class="btn" href="#about">About</a>
+          <a class="btn" href="#skills">Skills</a>
+          <a class="btn" href="#experience">Experience</a>
+          <a class="btn" href="#education">Education</a>
+          <a class="btn" href="#contact">Contact</a>
+          <a class="btn btn-primary" href="#contact">Hire Me</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── About ── -->
+    <section id="about">
+      <div class="card">
+        <h2 class="section-title">About</h2>
+        <p class="about-text">
+          Write a short introduction about yourself here. Share your passion, what you do,
+          and what makes you unique. Keep it concise and engaging — two or three sentences
+          is usually enough to capture a reader's attention.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Skills ── -->
+    <section id="skills">
+      <div class="card">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <span class="skill-tag">Skill One</span>
+          <span class="skill-tag">Skill Two</span>
+          <span class="skill-tag">Skill Three</span>
+          <span class="skill-tag">Skill Four</span>
+          <span class="skill-tag">Skill Five</span>
+          <span class="skill-tag">Skill Six</span>
+          <span class="skill-tag">Skill Seven</span>
+          <span class="skill-tag">Skill Eight</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section id="experience">
+      <div class="card">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Job Title</span>
+            <span class="entry-period">Month Year – Present</span>
+          </div>
+          <p class="entry-subtitle">Company Name &nbsp;·&nbsp; Location</p>
+          <p class="entry-desc">
+            Describe your responsibilities, achievements, and impact in this role.
+            Use action verbs and quantify results where possible.
+          </p>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Previous Job Title</span>
+            <span class="entry-period">Month Year – Month Year</span>
+          </div>
+          <p class="entry-subtitle">Previous Company &nbsp;·&nbsp; Location</p>
+          <p class="entry-desc">
+            Brief description of your role and key accomplishments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Education ── -->
+    <section id="education">
+      <div class="card">
+        <h2 class="section-title">Education</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Degree / Qualification</span>
+            <span class="entry-period">Year – Year</span>
+          </div>
+          <p class="entry-subtitle">Institution Name &nbsp;·&nbsp; Location</p>
+          <p class="entry-desc">
+            Optional: relevant modules, dissertation topic, grade, or achievements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact">
+      <div class="card">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-links">
+          <a class="btn" href="mailto:you@example.com">✉ Email</a>
+          <a class="btn" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-primary" href="your-cv.pdf" download>↓ Download CV</a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.container -->
+</body>
+</html>
