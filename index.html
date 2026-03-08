@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name – CV</title>
+  <title>Shadi Vandeventer – CV</title>
   <style>
     /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -171,6 +171,16 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
+    .skills-group { margin-bottom: 1rem; }
+    .skills-group:last-child { margin-bottom: 0; }
+    .skills-group-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.5rem;
+    }
 
     /* ── Experience & Education ── */
     .entry { margin-bottom: 1.5rem; }
@@ -197,6 +207,23 @@
       margin-bottom: 0.4rem;
     }
     .entry-desc { color: var(--text-secondary); font-size: 0.95rem; }
+    .entry-bullets {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+    .entry-bullets li {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+    .entry-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-dim);
+    }
 
     /* ── Contact ── */
     .contact-links {
@@ -220,117 +247,268 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="app">
+    <!-- Content rendered by JavaScript -->
+  </div>
 
-    <!-- ── Hero / Header ── -->
-    <section id="top">
-      <div class="card hero">
-        <h1>Your Name</h1>
-        <p class="tagline">Your Title &nbsp;·&nbsp; Your Location</p>
+  <script>
+    // ── CV Data ──────────────────────────────────────────────────────────────
+    const cv = {
+      name: 'Shadi Vandeventer',
+      tagline: 'Computer Science Student &nbsp;·&nbsp; Zurich, Switzerland',
+      about: 'CS student at the University of Zurich with a background in audio engineering and music production. Passionate about discrete neural networks, digital signal processing, and building elegant software solutions — from custom language interpreters to audio VST plugins.',
+      contact: {
+        phone: '078 830 56 61',
+        // Email assembled at runtime to reduce naive bot scraping
+        email: ['shavdv', 'gmail.com'].join('@'),
+        linkedin: { label: 'LinkedIn', url: 'https://linkedin.com/in/shadi-vandeventer' },
+        gitlab:   { label: 'GitLab',   url: 'https://gitlab.uzh.ch/shadisamuelthierry.vandeventer' },
+      },
+      skills: [
+        {
+          group: 'Languages',
+          tags: ['Python', 'C', 'Java', 'C++', 'JavaScript'],
+        },
+        {
+          group: 'Tools',
+          tags: ['Git', 'Gurobipy', 'VST SDK'],
+        },
+        {
+          group: 'Interests',
+          tags: ['Discrete Neural Networks', 'Digital Signal Processing (Audio)', 'Emulation', 'Android Programming', 'Network Applications'],
+        },
+      ],
+      education: [
+        {
+          title: 'B.S. Computer Science – Computer Linguistics minor',
+          period: 'Sep. 2024 – Present',
+          subtitle: 'University of Zurich &nbsp;·&nbsp; Zurich, Switzerland',
+          bullets: [
+            'GPA: 5.3',
+            'Courses: Data Structures & Algorithms, Foundations of Computing 1 & 2 (5.75), Intro to AI, Computer Networks and Distributed Systems (6.0), Intro to Operations Research, Database Systems',
+          ],
+        },
+        {
+          title: 'Diploma – Audio Engineering & Music Production',
+          period: 'Sep. 2022 – Aug. 2023',
+          subtitle: 'SAE Institute Zurich &nbsp;·&nbsp; Zurich, Switzerland',
+          bullets: [],
+        },
+      ],
+      experience: [
+        {
+          title: 'Substitute Teacher',
+          period: 'Feb. 2025',
+          subtitle: 'Zurich International School &nbsp;·&nbsp; Zurich, Switzerland',
+          bullets: [
+            'Instructed high school students in Java and JavaScript programming fundamentals, adapting lesson plans to ensure comprehension across varying skill levels.',
+            'Facilitated hands-on coding exercises and debugging sessions, fostering problem-solving skills and best practices in software development.',
+          ],
+        },
+      ],
+      projects: [
+        {
+          title: 'Custom Programming Language Interpreter',
+          period: '2025',
+          subtitle: 'Python',
+          bullets: [
+            'Created a custom programming language interpreter with arithmetic operators, boolean logic, control flow (do-until loops), and data structures (arrays, sets).',
+            'Implemented functional programming paradigms (map, reduce, filter) and built a visual execution tracer with timing analysis for debugging and profiling.',
+          ],
+        },
+        {
+          title: 'Hash-Based Backup System',
+          period: '2025',
+          subtitle: 'Python',
+          bullets: [
+            'Engineered a file backup system that tracks folder content through cryptographic hashing to detect file modifications efficiently.',
+            'Implemented incremental backup and restoration functionality, optimizing storage by only backing up changed files.',
+          ],
+        },
+        {
+          title: 'Audio Distortion VST Plugin',
+          period: '2024',
+          subtitle: 'C++ / VST SDK',
+          bullets: [
+            'Created a custom audio distortion and clipping plugin using the VST SDK, implementing real-time digital signal processing algorithms.',
+          ],
+        },
+      ],
+      other: [
+        {
+          title: 'Parkour Instructor',
+          period: '2024 – Present',
+          subtitle: 'ASVZ (Academic Sports Association Zurich) &nbsp;·&nbsp; Zurich, Switzerland',
+          bullets: [
+            'Lead parkour training sessions for students, teaching movement fundamentals, safety protocols, and progressive skill development.',
+            'Design and supervise training programs that build strength, coordination, and confidence through parkour techniques.',
+          ],
+        },
+        {
+          title: 'Active Member',
+          period: '2024 – Present',
+          subtitle: 'ICU – Informatics Club UZH (CS Student Association) &nbsp;·&nbsp; Zurich, Switzerland',
+          bullets: [
+            'Participate in computer science student community events, workshops, and collaborative learning initiatives.',
+            'Engage with fellow CS students to share knowledge and build professional networks within the university.',
+          ],
+        },
+      ],
+    };
 
-        <nav class="nav-buttons" aria-label="Page sections">
-          <a class="btn" href="#about">About</a>
-          <a class="btn" href="#skills">Skills</a>
-          <a class="btn" href="#experience">Experience</a>
-          <a class="btn" href="#education">Education</a>
-          <a class="btn" href="#contact">Contact</a>
-          <a class="btn btn-primary" href="#contact">Hire Me</a>
-        </nav>
-      </div>
-    </section>
+    // ── Helpers ──────────────────────────────────────────────────────────────
+    function el(tag, attrs = {}, ...children) {
+      const node = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'className') node.className = v;
+        else if (k === 'innerHTML') node.innerHTML = v;
+        else node.setAttribute(k, v);
+      }
+      for (const child of children) {
+        if (typeof child === 'string') node.appendChild(document.createTextNode(child));
+        else if (child) node.appendChild(child);
+      }
+      return node;
+    }
 
-    <!-- ── About ── -->
-    <section id="about">
-      <div class="card">
-        <h2 class="section-title">About</h2>
-        <p class="about-text">
-          Write a short introduction about yourself here. Share your passion, what you do,
-          and what makes you unique. Keep it concise and engaging — two or three sentences
-          is usually enough to capture a reader's attention.
-        </p>
-      </div>
-    </section>
+    function card(...children) {
+      return el('div', { className: 'card' }, ...children);
+    }
 
-    <!-- ── Skills ── -->
-    <section id="skills">
-      <div class="card">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-          <span class="skill-tag">Skill One</span>
-          <span class="skill-tag">Skill Two</span>
-          <span class="skill-tag">Skill Three</span>
-          <span class="skill-tag">Skill Four</span>
-          <span class="skill-tag">Skill Five</span>
-          <span class="skill-tag">Skill Six</span>
-          <span class="skill-tag">Skill Seven</span>
-          <span class="skill-tag">Skill Eight</span>
-        </div>
-      </div>
-    </section>
+    function sectionTitle(text) {
+      return el('h2', { className: 'section-title' }, text);
+    }
 
-    <!-- ── Experience ── -->
-    <section id="experience">
-      <div class="card">
-        <h2 class="section-title">Experience</h2>
+    function divider() {
+      return el('hr', { className: 'divider' });
+    }
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-title">Job Title</span>
-            <span class="entry-period">Month Year – Present</span>
-          </div>
-          <p class="entry-subtitle">Company Name &nbsp;·&nbsp; Location</p>
-          <p class="entry-desc">
-            Describe your responsibilities, achievements, and impact in this role.
-            Use action verbs and quantify results where possible.
-          </p>
-        </div>
+    function renderBullets(bullets) {
+      if (!bullets || bullets.length === 0) return null;
+      const ul = el('ul', { className: 'entry-bullets' });
+      for (const b of bullets) {
+        ul.appendChild(el('li', {}, b));
+      }
+      return ul;
+    }
 
-        <hr class="divider" />
+    function renderEntry(entry, isLast) {
+      const frag = document.createDocumentFragment();
+      const div = el('div', { className: 'entry' });
+      const header = el('div', { className: 'entry-header' },
+        el('span', { className: 'entry-title' }, entry.title),
+        el('span', { className: 'entry-period' }, entry.period),
+      );
+      div.appendChild(header);
+      div.appendChild(el('p', { className: 'entry-subtitle', innerHTML: entry.subtitle }));
+      if (entry.desc) div.appendChild(el('p', { className: 'entry-desc' }, entry.desc));
+      const bullets = renderBullets(entry.bullets);
+      if (bullets) div.appendChild(bullets);
+      frag.appendChild(div);
+      if (!isLast) frag.appendChild(divider());
+      return frag;
+    }
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-title">Previous Job Title</span>
-            <span class="entry-period">Month Year – Month Year</span>
-          </div>
-          <p class="entry-subtitle">Previous Company &nbsp;·&nbsp; Location</p>
-          <p class="entry-desc">
-            Brief description of your role and key accomplishments.
-          </p>
-        </div>
-      </div>
-    </section>
+    // ── Render ───────────────────────────────────────────────────────────────
+    function render() {
+      const app = document.getElementById('app');
 
-    <!-- ── Education ── -->
-    <section id="education">
-      <div class="card">
-        <h2 class="section-title">Education</h2>
+      // Hero
+      const heroSection = el('section', { id: 'top' });
+      const heroCard = el('div', { className: 'card hero' });
+      heroCard.appendChild(el('h1', {}, cv.name));
+      heroCard.appendChild(el('p', { className: 'tagline', innerHTML: cv.tagline }));
+      const nav = el('nav', { className: 'nav-buttons', 'aria-label': 'Page sections' });
+      const navLinks = [
+        ['#about',      'About',      ''],
+        ['#skills',     'Skills',     ''],
+        ['#experience', 'Experience', ''],
+        ['#projects',   'Projects',   ''],
+        ['#education',  'Education',  ''],
+        ['#other',      'Activities', ''],
+        ['#contact',    'Contact',    'btn-primary'],
+      ];
+      for (const [href, label, extra] of navLinks) {
+        nav.appendChild(el('a', { className: `btn ${extra}`.trim(), href }, label));
+      }
+      heroCard.appendChild(nav);
+      heroSection.appendChild(heroCard);
+      app.appendChild(heroSection);
 
-        <div class="entry">
-          <div class="entry-header">
-            <span class="entry-title">Degree / Qualification</span>
-            <span class="entry-period">Year – Year</span>
-          </div>
-          <p class="entry-subtitle">Institution Name &nbsp;·&nbsp; Location</p>
-          <p class="entry-desc">
-            Optional: relevant modules, dissertation topic, grade, or achievements.
-          </p>
-        </div>
-      </div>
-    </section>
+      // About
+      const aboutSection = el('section', { id: 'about' });
+      aboutSection.appendChild(card(
+        sectionTitle('About'),
+        el('p', { className: 'about-text' }, cv.about),
+      ));
+      app.appendChild(aboutSection);
 
-    <!-- ── Contact ── -->
-    <section id="contact">
-      <div class="card">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-links">
-          <a class="btn" href="mailto:you@example.com">✉ Email</a>
-          <a class="btn" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn btn-primary" href="your-cv.pdf" download>↓ Download CV</a>
-        </div>
-      </div>
-    </section>
+      // Skills
+      const skillsSection = el('section', { id: 'skills' });
+      const skillsCard = card(sectionTitle('Skills'));
+      for (const group of cv.skills) {
+        const groupDiv = el('div', { className: 'skills-group' });
+        groupDiv.appendChild(el('p', { className: 'skills-group-label' }, group.group));
+        const grid = el('div', { className: 'skills-grid' });
+        for (const tag of group.tags) {
+          grid.appendChild(el('span', { className: 'skill-tag' }, tag));
+        }
+        groupDiv.appendChild(grid);
+        skillsCard.appendChild(groupDiv);
+      }
+      skillsSection.appendChild(skillsCard);
+      app.appendChild(skillsSection);
 
-  </div><!-- /.container -->
+      // Experience
+      const expSection = el('section', { id: 'experience' });
+      const expCard = card(sectionTitle('Experience'));
+      cv.experience.forEach((entry, i) => {
+        expCard.appendChild(renderEntry(entry, i === cv.experience.length - 1));
+      });
+      expSection.appendChild(expCard);
+      app.appendChild(expSection);
+
+      // Projects
+      const projSection = el('section', { id: 'projects' });
+      const projCard = card(sectionTitle('Projects'));
+      cv.projects.forEach((entry, i) => {
+        projCard.appendChild(renderEntry(entry, i === cv.projects.length - 1));
+      });
+      projSection.appendChild(projCard);
+      app.appendChild(projSection);
+
+      // Education
+      const eduSection = el('section', { id: 'education' });
+      const eduCard = card(sectionTitle('Education'));
+      cv.education.forEach((entry, i) => {
+        eduCard.appendChild(renderEntry(entry, i === cv.education.length - 1));
+      });
+      eduSection.appendChild(eduCard);
+      app.appendChild(eduSection);
+
+      // Other / Activities
+      const otherSection = el('section', { id: 'other' });
+      const otherCard = card(sectionTitle('Activities'));
+      cv.other.forEach((entry, i) => {
+        otherCard.appendChild(renderEntry(entry, i === cv.other.length - 1));
+      });
+      otherSection.appendChild(otherCard);
+      app.appendChild(otherSection);
+
+      // Contact
+      const contactSection = el('section', { id: 'contact' });
+      const contactCard = card(sectionTitle('Contact'));
+      const links = el('div', { className: 'contact-links' });
+      links.appendChild(el('a', { className: 'btn', href: `mailto:${cv.contact.email}` }, '✉ ' + cv.contact.email));
+      links.appendChild(el('a', { className: 'btn', href: `tel:${cv.contact.phone.replace(/\s/g, '')}` }, '📞 ' + cv.contact.phone));
+      links.appendChild(el('a', { className: 'btn', href: cv.contact.linkedin.url, target: '_blank', rel: 'noopener' }, cv.contact.linkedin.label));
+      links.appendChild(el('a', { className: 'btn', href: cv.contact.gitlab.url, target: '_blank', rel: 'noopener' }, cv.contact.gitlab.label));
+      contactCard.appendChild(links);
+      contactSection.appendChild(contactCard);
+      app.appendChild(contactSection);
+    }
+
+    render();
+  </script>
 </body>
 </html>
