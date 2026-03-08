@@ -386,11 +386,11 @@ body {
 }
 
 .profile-img {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;  /* Makes it circular */
+  width: 82px;
+  height: 82px;
+  border-radius: 10%;  /* Makes it circular */
   object-fit: cover;
-  border: 3px solid var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .entry {
