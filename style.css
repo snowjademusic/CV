@@ -21,6 +21,7 @@ body {
 .hero h1 {
   background: linear-gradient(to bottom right, #fff 30%, var(--accent));
   -webkit-background-clip: text;
+  background-clip: text;
   letter-spacing: -0.03em;
 }
 
