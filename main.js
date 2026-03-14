@@ -13,8 +13,8 @@ const cv = {
   },
   skills: [
     { group: 'Core Systems', tags: ['C++', 'C', 'Java', 'Python', 'Digital Signal Processing (DSP)'] },
-    { group: 'Engineering Tools', tags: ['Git', 'VST SDK', 'Gurobi', 'Linux', 'LaTeX'] },
-    { group: 'Specializations', tags: ['Discrete Neural Networks', 'Distributed Systems', 'Real-time Audio', 'Language Interpreters'] },
+    { group: 'Engineering Tools', tags: ['Git', 'VST SDK', 'Gurobipy', 'Linux', 'LaTeX'] },
+    { group: 'Specializations', tags: ['Discrete Neural Networks', 'Distributed Systems', 'Real-time Audio', 'Language Interpreters', 'Emulation', 'Android Programming', 'Network Applications'] },
   ],
   education: [
     {
@@ -23,8 +23,8 @@ const cv = {
       subtitle: 'University of Zurich (UZH)',
       bullets: [
         'Academic Excellence: Current GPA 5.3/6.0.',
-        'Distinctions: Computer Networks (6.0), Foundations of Computing (5.75).',
-        'Relevant Coursework: Data Structures & Algorithms, Intro to AI, Database Systems, Operations Research.'
+        'Distinctions: Computer Networks & Distributed Systems (6.0), Foundations of Computing 1 & 2 (5.75).',
+        'Relevant Coursework: Data Structures & Algorithms, Foundations of Computing 1 & 2, Intro to AI, Computer Networks & Distributed Systems, Database Systems, Intro to Operations Research.'
       ],
     },
     {
@@ -80,6 +80,15 @@ const cv = {
       subtitle: 'ASVZ Zurich',
       image: 'assets/Parkour.jpg',
       bullets: ['Managing risk-assessment and physical training for groups of 20+ students, fostering discipline and spatial awareness.'],
+    },
+    {
+      title: 'Active Member',
+      period: '2024 – Present',
+      subtitle: 'ICU (Informatics Club UZH – CS Student Association)',
+      bullets: [
+        'Participate in computer science student community events, workshops, and collaborative learning initiatives.',
+        'Engage with fellow CS students to share knowledge and build professional networks within the university.',
+      ],
     },
   ],
 };
